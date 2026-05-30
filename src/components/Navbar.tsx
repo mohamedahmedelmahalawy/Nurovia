@@ -13,11 +13,10 @@ export default function Navbar() {
     return (
       <div className="fixed z-5 w-full backdrop-blur-2xl flex justify-between items-center py-3 px-4 sm:px-20 xl:px-32">
         <Skeleton
-          width={128}
+          width={124}
           height={40}
           borderRadius={9999}
-          baseColor="#e4fafd"
-          highlightColor="#6b5ff0"
+          baseColor="#fefefd"
           customHighlightBackground="
             linear-gradient(
               90deg,
@@ -27,7 +26,6 @@ export default function Navbar() {
             )
           "
         />
-
         <Skeleton
           width={124}
           height={40}
