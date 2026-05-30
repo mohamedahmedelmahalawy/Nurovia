@@ -1,14 +1,49 @@
 import { useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
-import { ArrowRight, Loader } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useClerk, UserButton, useUser } from "@clerk/react";
+
+import Skeleton from "react-loading-skeleton";
 export default function Navbar() {
   const navigate = useNavigate();
   const { user, isLoaded } = useUser();
   const { openSignIn } = useClerk();
 
   if (!isLoaded) {
-    return <Loader />;
+    return (
+      <div className="fixed z-5 w-full backdrop-blur-2xl flex justify-between items-center py-3 px-4 sm:px-20 xl:px-32">
+        <Skeleton
+          width={128}
+          height={40}
+          borderRadius={9999}
+          baseColor="#e4fafd"
+          highlightColor="#6b5ff0"
+          customHighlightBackground="
+            linear-gradient(
+              90deg,
+              var(--base-color) 40%,
+              var(--highlight-color) 50%,
+              var(--base-color) 60%
+            )
+          "
+        />
+
+        <Skeleton
+          width={124}
+          height={40}
+          borderRadius={9999}
+          baseColor="#fefefd"
+          customHighlightBackground="
+            linear-gradient(
+              90deg,
+              var(--base-color) 40%,
+              var(--highlight-color) 50%,
+              var(--base-color) 60%
+            )
+          "
+        />
+      </div>
+    );
   }
   return (
     <div className="fixed z-5 w-full backdrop-blur-2xl flex justify-between items-center py-3 px-4 sm:px-20 xl:px-32 cursor-pointer">
