@@ -1,11 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader } from "lucide-react";
 import { useClerk, UserButton, useUser } from "@clerk/react";
 export default function Navbar() {
   const navigate = useNavigate();
-  const { user } = useUser();
+  const { user, isLoaded } = useUser();
   const { openSignIn } = useClerk();
+
+  if (!isLoaded) {
+    return <Loader />;
+  }
   return (
     <div className="fixed z-5 w-full backdrop-blur-2xl flex justify-between items-center py-3 px-4 sm:px-20 xl:px-32 cursor-pointer">
       <img
