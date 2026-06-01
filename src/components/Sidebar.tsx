@@ -1,10 +1,11 @@
-import { useClerk, useUser } from "@clerk/react";
+import { Show, useClerk, useUser } from "@clerk/react";
 import {
   Eraser,
   FileText,
   Hash,
   House,
   Image,
+  LogOut,
   Scissors,
   SquarePen,
   Users,
@@ -27,7 +28,8 @@ const navItems: NavItem[] = [
 ];
 export default function Sidebar({ sidebar, sidebarHandler }: SidebarProps) {
   const { user } = useUser();
-  const { signOut, openUserProfile } = useClerk();
+  const { signOut } = useClerk();
+
   return (
     <div
       className={`w-60 bg-white border-r border-gray-200 flex flex-col justify-between items-center max-sm:absolute top-14 bottom-0 ${sidebar ? "translate-x-0" : "max-sm:-translate-x-full"} transition-all duration-300 ease-in-out`}
@@ -60,7 +62,23 @@ export default function Sidebar({ sidebar, sidebarHandler }: SidebarProps) {
           ))}
         </div>
       </div>
-      <div></div>
+      <div className="w-full border-t border-gray-200 p-4 px-7 flex items-center justify-between">
+        <div className="flex gap-2 items-center cursor-pointer">
+          <img src={user?.imageUrl} alt="image" className="w-8 rounded-full" />
+          <div>
+            <h1 className="text-sm font-medium">{user?.fullName}</h1>
+            <p className="text-xs text-gray-500">
+              <Show when={{ plan: "premium_user" }} fallback="Free">
+                Premium
+              </Show>
+            </p>
+          </div>
+        </div>
+        <LogOut
+          onClick={() => signOut()}
+          className="w-4.5 text-gray-400 hover:text-gray-700 transition cursor-pointer"
+        />
+      </div>
     </div>
   );
 }

@@ -28,7 +28,7 @@ export default function Layout() {
           src={assets.logo}
           alt="Nurovia logo"
           onClick={() => navigate("/")}
-          className="w-32 h-auto"
+          className="w-32 sm:w-44 h-auto cursor-pointer"
         />
         {sidebar ? (
           <X
