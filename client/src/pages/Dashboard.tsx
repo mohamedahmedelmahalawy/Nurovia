@@ -3,6 +3,7 @@ import { dummyCreationData } from "../assets/assets";
 import type { Creation } from "../interfaces/assetsTypes";
 import { Gem, Sparkles } from "lucide-react";
 import { Show } from "@clerk/react";
+import CreationItem from "../components/CreationItem";
 
 export default function Dashboard() {
   const [creations, setCreations] = useState<Creation[]>([]);
@@ -43,6 +44,9 @@ export default function Dashboard() {
       </div>
       <div className="space-y-3">
         <p className="mt-6 mb-4">Recent Creations</p>
+        {creations.map((item) => (
+          <CreationItem key={item.id} item={item} />
+        ))}
       </div>
     </div>
   );
